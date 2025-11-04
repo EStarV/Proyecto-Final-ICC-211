@@ -18,6 +18,14 @@ public class Ruta {
         this.medio = medio;
     }
 
+    public Ruta(UUID id_origen, UUID id_destino, int tiempo, int costo) {
+        this.id = UUID.randomUUID();
+        this.id_origen = id_origen;
+        this.id_destino = id_destino;
+        this.tiempo = tiempo;
+        this.costo = costo;
+    }
+
     public String getMedio() {
         return medio;
     }
