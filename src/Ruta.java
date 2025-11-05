@@ -7,23 +7,30 @@ public class Ruta {
     private UUID id_destino;
     private int tiempo; //En minutos
     private int costo; //En pesos
+    private double distancia; //en km
+    private int transbordos; //cantidad de transbordos
     private String medio;
 
-    public Ruta(UUID id_origen, UUID id_destino, int tiempo, int costo, String medio) {
+    public Ruta(UUID id_origen, UUID id_destino, int tiempo, int costo, double distancia, int transbordos, String medio) {
         this.id = UUID.randomUUID();
         this.id_origen = id_origen;
         this.id_destino = id_destino;
         this.tiempo = tiempo;
         this.costo = costo;
+        this.distancia = distancia;
+        this.transbordos = transbordos;
         this.medio = medio;
     }
 
-    public Ruta(UUID id_origen, UUID id_destino, int tiempo, int costo) {
+    public Ruta(UUID id_origen, UUID id_destino, int tiempo, int costo, double distancia, int transbordos) {
         this.id = UUID.randomUUID();
         this.id_origen = id_origen;
         this.id_destino = id_destino;
         this.tiempo = tiempo;
         this.costo = costo;
+        this.distancia = distancia;
+        this.transbordos = transbordos;
+        this.medio = "Autobus";
     }
 
     public String getMedio() {
@@ -72,5 +79,21 @@ public class Ruta {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public double getDistancia() {
+        return distancia;
+    }
+
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
+    }
+
+    public int getTransbordos() {
+        return transbordos;
+    }
+
+    public void setTransbordos(int transbordos) {
+        this.transbordos = transbordos;
     }
 }

@@ -10,6 +10,11 @@ public class Parada {
         this.nombre = nombre;
     }
 
+    public Parada(String nombre){
+        this.id = UUID.randomUUID();
+        this.nombre = nombre;
+    }
+
     public UUID getId() {
         return id;
     }

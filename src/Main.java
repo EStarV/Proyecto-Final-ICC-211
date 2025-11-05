@@ -1,15 +1,31 @@
+import java.util.ArrayList;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+        ArrayList<Parada> paradas = new ArrayList<>();
+        for(int i=0; i<8; i++){
+             paradas.add(new Parada(String.format("%c", 'A'+i)));
         }
+        ListaAdyacencia.getInstancia().addParadasLista(paradas);
+        ArrayList<Ruta> rutas = new ArrayList<>();
+        rutas.add(new Ruta(paradas.get(0).getId(), paradas.get(3).getId(), 10, 35, 2, 1));
+        rutas.add(new Ruta(paradas.get(0).getId(), paradas.get(2).getId(), 2, 20, 1.5, 1, "Metro"));
+        rutas.add(new Ruta(paradas.get(0).getId(), paradas.get(1).getId(), 3, 20, 2, 2, "Metro"));
+        rutas.add(new Ruta(paradas.get(1).getId(), paradas.get(3).getId(), 4, 30, 3, 2, "Monorriel"));
+        rutas.add(new Ruta(paradas.get(1).getId(), paradas.get(4).getId(), 5, 30, 8, 3, "Metro"));
+        rutas.add(new Ruta(paradas.get(2).getId(), paradas.get(5).getId(), 7, 20, 5, 1, "Metro"));
+        rutas.add(new Ruta(paradas.get(2).getId(), paradas.get(7).getId(), 45, 35, 10, 1));
+        rutas.add(new Ruta(paradas.get(3).getId(), paradas.get(5).getId(), 8, 35, 10, 2 ));
+        rutas.add(new Ruta(paradas.get(3).getId(), paradas.get(6).getId(), 10, 35, 10, 1, "Monorriel"));
+        rutas.add(new Ruta(paradas.get(4).getId(), paradas.get(6).getId(), 6, 25, 4, 2, "Tranvia"));
+        rutas.add(new Ruta(paradas.get(4).getId(), paradas.get(7).getId(), 7, 30, 4, 1, "Tranvia"));
+        rutas.add(new Ruta(paradas.get(5).getId(), paradas.get(4).getId(), 3, 35, 5, 3, "Metro"));
+        rutas.add(new Ruta(paradas.get(5).getId(), paradas.get(6).getId(), 5, 35, 8, 1, "Monorriel"));
+        rutas.add(new Ruta(paradas.get(6).getId(), paradas.get(7).getId(), 4, 20, 2, 2));
+
+        ListaAdyacencia.getInstancia().addRutasLista(rutas);
+
     }
 }
