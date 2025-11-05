@@ -24,4 +24,11 @@ public class Camino {
     public void setCamino(List<Parada> camino) {
         this.camino = camino;
     }
+
+    public void printCamino(){
+        for(Parada parada : camino){
+            System.out.print(parada.getNombre()+"-");
+        }
+        System.out.println(distancia);
+    }
 }

@@ -26,6 +26,11 @@ public class Main {
         rutas.add(new Ruta(paradas.get(6).getId(), paradas.get(7).getId(), 4, 20, 2, 2));
 
         ListaAdyacencia.getInstancia().addRutasLista(rutas);
-
+        Camino caminoCorto1 = ListaAdyacencia.getInstancia().dijkstra(paradas.get(0), paradas.get(7), "tiempo");
+        Camino caminoCorto2 = ListaAdyacencia.getInstancia().dijkstra(paradas.get(0), paradas.get(7), "distancia");
+        Camino caminoCorto3 = ListaAdyacencia.getInstancia().dijkstra(paradas.get(0), paradas.get(7), "Costo");
+        caminoCorto1.printCamino();
+        caminoCorto2.printCamino();
+        caminoCorto3.printCamino();
     }
 }
