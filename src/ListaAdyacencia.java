@@ -96,4 +96,57 @@ public class ListaAdyacencia {
         return dijkstra.calCamino(origen, destino, parametro);
     }
 
+    public Camino dijkstraID(UUID origen, UUID destino, String parametro){
+        Dijkstra dijkstra = new Dijkstra(grafo, paradas);
+        return dijkstra.calcCaminoById(origen, destino, parametro);
+    }
+
+    public boolean modificarParada(Parada parada, String new_nombre){
+        if(parada == null || parada.getId() == null) return false;
+        if(!paradas.containsKey(parada.getId())) return false;
+        paradas.get(parada.getId()).setNombre(new_nombre);
+        return true;
+    }
+
+    public boolean modificarRuta(Ruta ruta, int new_tiempo, double new_distancia, int new_costo, int new_transbordos, String new_medio){
+        if(ruta == null || ruta.getId() == null) return false;
+
+        List<Ruta>rutas = grafo.get(ruta.getId_origen());
+        Ruta r = getRuta(ruta.getId_origen(), ruta.getId());
+        if(r == null) return false;
+        r.setTiempo(new_tiempo);
+        r.setDistancia(new_distancia);
+        r.setCosto(new_costo);
+        r.setTransbordos(new_transbordos);
+        if(new_medio != null){
+            r.setMedio(new_medio);
+        }
+        return true;
+    }
+
+    public boolean modifNodosRuta(Parada new_origen, Parada new_destino, Ruta ruta){
+        if(new_origen == null || new_destino == null) return false;
+        if(!paradas.containsKey(new_origen.getId()) || !paradas.containsKey(new_destino.getId())) return false;
+
+        Ruta r = getRuta(ruta.getId_origen(), ruta.getId());
+        if(r == null) return false;
+        grafo.get(ruta.getId_origen()).remove(r);
+        r.setId_origen(new_origen.getId());
+        r.setId_destino(new_destino.getId());
+        grafo.get(new_origen.getId()).add(ruta);
+        return true;
+    }
+
+    public Ruta getRuta(UUID origen, UUID id){
+        if(grafo.containsKey(origen)){
+            List<Ruta>rutas = grafo.get(origen);
+            for(Ruta r : rutas){
+                if(r.getId().equals(id)){
+                    return r;
+                }
+            }
+        }
+        return null;
+    }
+
 }
